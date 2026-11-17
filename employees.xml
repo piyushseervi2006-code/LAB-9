@@ -1,0 +1,22 @@
+
+
+<employees>
+    <employee>
+        <id>101</id>
+        <name>Abhishek Bhat</name>
+        <dept>Software Development</dept>
+        <salary>60000</salary>
+    </employee>
+    <employee>
+        <id>102</id>
+        <name>Deepak Kumar</name>
+        <dept>Networking</dept>
+        <salary>55000</salary>
+    </employee>
+    <employee>
+        <id>103</id>
+        <name>Miguel</name>
+        <dept>Data Science</dept>
+        <salary>75000</salary>
+    </employee>
+</employees>

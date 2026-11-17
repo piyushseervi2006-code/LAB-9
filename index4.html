@@ -1,0 +1,114 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Information</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+
+        h2 {
+            color: black;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-bottom: 25px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eeeeee;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Employee Information (Read from XML)</h2>
+
+<button onclick="loadData()">Load Employee Data</button>
+
+<table>
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+    </tr>
+
+    <tbody id="employeeData"></tbody>
+</table>
+
+<script>
+
+function loadData() {
+
+    alert("Button clicked!");
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "employees.xml", true);
+
+    xhr.onload = function() {
+
+        if (xhr.status == 200) {
+
+            let xml = xhr.responseXML;
+
+            let employees =
+                xml.getElementsByTagName("employee");
+
+            let output = "";
+
+            for (let i = 0; i < employees.length; i++) {
+
+                let id = employees[i].getElementsByTagName("id")[0].textContent;
+
+                let name = employees[i].getElementsByTagName("name")[0].textContent;
+
+                let dept = employees[i].getElementsByTagName("dept")[0].textContent;
+
+                let salary = employees[i].getElementsByTagName("salary")[0].textContent;
+
+                output += "<tr>";
+                output += "<td>" + id + "</td>";
+                output += "<td>" + name + "</td>";
+                output += "<td>" + dept + "</td>";
+                output += "<td>" + salary + "</td>";
+                output += "</tr>";
+            }
+
+            document.getElementById("employeeData").innerHTML = output;
+
+        } else {
+            alert("XML file not found! Check the filename.");
+        }
+    };
+
+    xhr.onerror = function() {
+        alert("Error loading XML file!");
+    };
+
+    xhr.send();
+}
+
+</script>
+
+</body>
+</html>
